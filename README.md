@@ -1,4 +1,6 @@
 # letsstart.py
 we are going to learn python
 <br>
-Author - Akshita Bind
+Author - Akshita Bind( du sol )
+
+
