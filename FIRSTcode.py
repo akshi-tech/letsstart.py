@@ -1,108 +1,40 @@
+class Hacker:
+    def __init__(self, name, skill):
+        self.name = name
+        self.skill = skill
 
-#include <iostream>
-using namespace std;
+    def introduce(self):
+        print(f"👨‍💻 Hacker: {self.name}")
+        print(f"⚡ Skill Level: {self.skill}")
 
-// Abstract Class
-class Person {
-protected:
-    string name;
+    def __add__(self, other):
+        return self.skill + other.skill
 
-public:
-    Person(string n) {
-        name = n;
-    }
 
-    virtual void display() = 0; // Pure Virtual Function
-};
+class EliteHacker(Hacker):
+    def __init__(self, name, skill, rank):
+        super().__init__(name, skill)
+        self.rank = rank
 
-// Base Class
-class Student : public Person {
-private:
-    int marks; // Encapsulation
+    def introduce(self):  # Polymorphism
+        print("🔥 ELITE HACKER PROFILE 🔥")
+        print(f"Name : {self.name}")
+        print(f"Skill: {self.skill}")
+        print(f"Rank : {self.rank}")
 
-public:
-    // Constructor
-    Student(string n, int m) : Person(n) {
-        marks = m;
-    }
 
-    // Function Overloading
-    void show() {
-        cout << "Student Name: " << name << endl;
-    }
+# Objects
+h1 = Hacker("Akshi", 95)
+h2 = Hacker("Shadow", 90)
 
-    void show(int x) {
-        cout << "Marks: " << marks + x << endl;
-    }
+# Encapsulation-like access
+h1.introduce()
 
-    // Virtual Function
-    void display() override {
-        cout << "Name: " << name
-             << ", Marks: " << marks << endl;
-    }
+print("\n🚀 Combined Power:", h1 + h2)
 
-    // Friend Function
-    friend void result(Student s);
+elite = EliteHacker("Akshi", 100, "Legend")
+print()
+elite.introduce()
 
-    // Operator Overloading
-    Student operator+(Student s) {
-        return Student(name, marks + s.marks);
-    }
-
-    // Destructor
-    ~Student() {
-        cout << "Destructor Called for " << name << endl;
-    }
-};
-
-// Derived Class (Inheritance)
-class Monitor : public Student {
-private:
-    int section;
-
-public:
-    Monitor(string n, int m, int s)
-        : Student(n, m) {
-        section = s;
-    }
-
-    void display() override { // Runtime Polymorphism
-        cout << "Monitor Details" << endl;
-        Student::display();
-        cout << "Section: " << section << endl;
-    }
-};
-
-// Friend Function Definition
-void result(Student s) {
-    cout << "Friend Function Accessing Data" << endl;
-    s.display();
-}
-
-int main() {
-
-    // Object Creation
-    Student s1("Akshi", 85);
-    Student s2("Riya", 90);
-
-    // Function Overloading
-    s1.show();
-    s1.show(5);
-
-    // Friend Function
-    result(s1);
-
-    // Operator Overloading
-    Student s3 = s1 + s2;
-    cout << "\nAfter Adding Marks:" << endl;
-    s3.display();
-
-    // Runtime Polymorphism
-    Person *p;
-    Monitor m1("Rahul", 95, 12);
-
-    p = &m1;
-    p->display();
-
-    return 0;
-}
+print("\n🌸 Easy Peasy 😌")
+print("Mission Completed Successfully ✔️")
